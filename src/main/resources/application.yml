@@ -1,0 +1,12 @@
+micronaut:
+  application:
+    name: micronautTestResourceFailed
+datasources:
+  default:
+    driverClassName: org.postgresql.Driver
+    db-type: postgresql
+netty:
+  default:
+    allocator:
+      max-order: 3
+jpa.default.properties.hibernate.hbm2ddl.auto: update
