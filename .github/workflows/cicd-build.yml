@@ -12,7 +12,16 @@ on:
 jobs:
 
   build:
-    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        include:
+          - os: "ubuntu-22.04"
+            build-script: "./gradlew clean build"
+          - os: "macos-12"
+            build-script: "./gradlew clean build"
+          - os: "windows-2022"
+            build-script: "gradlew.bat clean build"
+    runs-on: ${{ matrix.os }}
     permissions:
       contents: read
       packages: write
@@ -28,4 +37,4 @@ jobs:
           distribution: 'adopt'
 
       - name: Build with Gradle
-        run: ./gradlew clean build
+        run: ${{ matrix.build-script }}
